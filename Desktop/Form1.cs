@@ -22,8 +22,14 @@ namespace Desktop
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string filePath = @"" + textBox1.Text;
-            lines = File.ReadAllLines(filePath).ToList();
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "txt files (*.txt)|*.txt|All Files (*.*)|*.*";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                textBox1.Text = openFileDialog.FileName;
+                string filePath = @"" + openFileDialog.FileName;
+                lines = File.ReadAllLines(filePath).ToList();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
